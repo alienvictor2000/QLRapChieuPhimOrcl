@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="35fa4746-0d78-45af-a767-f3593cfab07e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="dbacaf1b-05df-4750-bb63-108dd2bfd13a"/>
+	<queryString>
+		<![CDATA[select *
+from CTHDVE
+where SOHD=5
+]]>
+	</queryString>
+	<field name="SOHD" class="java.math.BigDecimal"/>
+	<field name="MALC" class="java.math.BigDecimal"/>
+	<field name="MAGHE" class="java.lang.String"/>
+	<field name="MAGV" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50">
+			<staticText>
+				<reportElement x="250" y="14" width="100" height="20" uuid="a59a5c07-6cad-451a-a44a-03712ea44133"/>
+				<text><![CDATA[rap chieu phim]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="138" height="20" uuid="be72feca-6688-44b3-829f-cafc6d9ba296"/>
+				<text><![CDATA[SOHD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="0" width="138" height="20" uuid="598af139-77b2-46b3-bb11-1fcd5ddab6da"/>
+				<text><![CDATA[MALC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="0" width="138" height="20" uuid="443c3b15-72a4-4754-94a3-d8ee617e4667"/>
+				<text><![CDATA[MAGHE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="414" y="0" width="138" height="20" uuid="ac868728-f716-4b32-a1d4-30df7bbd56d7"/>
+				<text><![CDATA[MAGV]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="138" height="20" uuid="244ba061-f150-4d86-9d5b-1ab58a2d9089"/>
+				<textFieldExpression><![CDATA[$F{SOHD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="0" width="138" height="20" uuid="55f82815-5411-46c7-9a3c-64ae7f4e110b"/>
+				<textFieldExpression><![CDATA[$F{MALC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="0" width="138" height="20" uuid="1ac88fa2-cadc-48eb-b3f3-f4d2f655ce70"/>
+				<textFieldExpression><![CDATA[$F{MAGHE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="0" width="138" height="20" uuid="7a69d85c-99e8-4af8-a61c-4d259872cbf1"/>
+				<textFieldExpression><![CDATA[$F{MAGV}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

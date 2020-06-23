@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="newReport1_subreport1" language="groovy" pageWidth="400" pageHeight="400" columnWidth="400" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0e47c1ac-da63-4774-b08e-07ff9b8a8f54">
+	<property name="ireport.zoom" value="1.9487171000000014"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="MaLC" class="java.math.BigDecimal"/>
+	<parameter name="SoHD" class="java.math.BigDecimal"/>
+	<parameter name="MaGHE" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select nv.hoten,p.ten_phong,f.tenphim,to_char(lc.ngaygiochieu,'DD/MM/YYYY') as NgayChieu,to_char(lc.ngaygiochieu,'HH24:mi') as GioChieu,ct.maghe,gv.gia
+from Phim f, lichchieu lc, PhongChieu p, CTHDVE ct,HoaDonVe hd,GiaVe gv,NhanVien nv
+where f.MaPhim=lc.MaPhim and p.MaPC=lc.MaPC and hd.MaNV=nv.MaNV
+and ct.SoHD=hd.SoHD and ct.MaGV=gv.MaGV and ct.MaLc=lc.MaLC
+and ct.SoHD=$P{SoHD} and ct.MaLC=$P{MaLC} and ct.MaGhe=$P{MaGHE}]]>
+	</queryString>
+	<field name="HOTEN" class="java.lang.String"/>
+	<field name="TEN_PHONG" class="java.lang.String"/>
+	<field name="TENPHIM" class="java.lang.String"/>
+	<field name="NGAYCHIEU" class="java.lang.String"/>
+	<field name="GIOCHIEU" class="java.lang.String"/>
+	<field name="MAGHE" class="java.lang.String"/>
+	<field name="GIA" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="258" splitType="Stretch">
+			<staticText>
+				<reportElement x="24" y="0" width="190" height="20" forecolor="#FF0000" uuid="2d4d47e8-c423-48c4-b8b9-c683da8ad24f"/>
+				<textElement>
+					<font fontName="DejaVu Serif" size="14"/>
+				</textElement>
+				<text><![CDATA[CGV CINEMA THU DUC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="20" width="315" height="14" uuid="d28e2043-5eb2-47d9-967d-71284ac5e07a"/>
+				<textElement textAlignment="Justified">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TTTM VINCOM, So 216 VO VAN NGAN, BINH THO, THU DUC, TP HCM, VIET NAM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="34" width="126" height="20" uuid="ba2022f6-db6c-444b-a0ca-ec60024670ff"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nhân viên bán vé:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="139" y="83" width="100" height="20" forecolor="#990000" uuid="4f3e58f8-8c52-4d26-9e46-f03dba26b694"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VÉ XEM PHIM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="113" width="50" height="20" uuid="eebc0edf-4bdc-4c1a-90bf-42d0af35d772"/>
+				<text><![CDATA[Tên phim:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="214" y="113" width="55" height="20" uuid="c403fc77-1f9e-404c-873b-6a686fd93c14"/>
+				<text><![CDATA[Phòng chiếu:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="214" y="133" width="55" height="20" uuid="8e30f640-1648-4584-9a96-29052ff1d90a"/>
+				<text><![CDATA[Số ghế:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="214" y="153" width="55" height="20" uuid="3fd44672-1136-46f8-9e1b-f5cdd0d275e5"/>
+				<text><![CDATA[Giá:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="133" width="59" height="20" uuid="6ac42bc9-0e4b-4904-a26a-24dca1390054"/>
+				<text><![CDATA[Giờ chiếu:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="153" width="63" height="20" uuid="2d891db7-08ae-4a82-8b7b-fb6345721b01"/>
+				<text><![CDATA[Ngày chiếu:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="119" y="34" width="100" height="20" uuid="8bde20cc-9b88-4730-a1fe-d89c90206fea"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HOTEN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="74" y="113" width="100" height="20" uuid="027b2b66-f0c4-4bd8-86bc-51975b01c1b2"/>
+				<textFieldExpression><![CDATA[$F{TENPHIM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="74" y="133" width="100" height="20" uuid="70801835-d3b6-45e6-b327-17bff7bc67e5"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{GIOCHIEU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="76" y="153" width="100" height="20" uuid="4a14552c-cf6c-4022-b18b-17e10c63965f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NGAYCHIEU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="252" y="113" width="100" height="20" uuid="da3eceed-b2c2-428f-a85d-f382ae27f415"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TEN_PHONG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="252" y="133" width="100" height="20" uuid="019bfae7-0633-4747-ab4f-79c62a85f5fc"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MAGHE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="239" y="153" width="100" height="20" uuid="0fa64c67-345a-49d8-a5bf-29baa27227f4"/>
+				<textFieldExpression><![CDATA[$F{GIA}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="107" y="68" width="162" height="1" uuid="db84d73d-76df-44f3-bab8-3aa796e3420f"/>
+			</line>
+		</band>
+	</title>
+</jasperReport>

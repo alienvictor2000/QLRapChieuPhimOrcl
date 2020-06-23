@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ThongKeDoanhThuTheoCa" language="groovy" pageWidth="450" pageHeight="700" columnWidth="410" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="42a19032-096e-4e33-b3bf-edf68d1c3508">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.callouts" value="##Sat Jun 22 21:15:57 ICT 2019"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="73fb810d-f89f-46aa-adfa-13a10ee2b4ec"/>
+	<parameter name="THANG" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT MANV, to_char(THOIGIAN,'dd/mm/yy'),(SUM(TONGTIEN)-SUM(GIAMGIA)) AS TONG
+FROM HOADONVE
+WHERE EXTRACT(MONTH FROM THOIGIAN)=$P{THANG}
+AND to_char(THOIGIAN,'YYYY')=to_char(SYSDATE,'YYYY')
+GROUP BY MANV, to_char(THOIGIAN,'dd/mm/yy')
+ORDER BY MANV]]>
+	</queryString>
+	<field name="MANV" class="java.lang.String"/>
+	<field name="TO_CHAR(THOIGIAN,&apos;DD/MM/YY&apos;)" class="java.lang.String"/>
+	<field name="TONG" class="java.math.BigDecimal"/>
+	<variable name="TONG_1" class="java.math.BigDecimal" resetType="Group" resetGroup="NGÀY" calculation="Sum">
+		<variableExpression><![CDATA[$F{TONG}]]></variableExpression>
+	</variable>
+	<variable name="TONG_2" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{TONG}]]></variableExpression>
+	</variable>
+	<group name="NGÀY">
+		<groupExpression><![CDATA[$F{TO_CHAR(THOIGIAN,'DD/MM/YY')}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<staticText>
+					<reportElement x="163" y="10" width="100" height="30" uuid="ad39fbd2-944d-469e-992f-698fd157d5e9"/>
+					<textElement>
+						<font size="18"/>
+					</textElement>
+					<text><![CDATA[NGÀY]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="10" width="149" height="30" uuid="6014c4c9-75c4-4ef0-8828-b92d4b59b1b6"/>
+					<textElement>
+						<font size="18"/>
+					</textElement>
+					<text><![CDATA[MÃ NHÂN VIÊN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="284" y="10" width="126" height="30" uuid="0402bf56-d5b1-4184-a3cf-5fd74ed88a70"/>
+					<textElement>
+						<font size="18"/>
+					</textElement>
+					<text><![CDATA[DOANH THU]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="74">
+				<staticText>
+					<reportElement x="126" y="17" width="137" height="33" uuid="c925ed2a-da2e-40ad-92ca-2f4c0c89729e"/>
+					<textElement>
+						<font size="20" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TỔNG CỘNG:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="43" y="5" width="327" height="1" uuid="b2c037b8-3ead-44da-beaf-eb9e9070ed6a"/>
+				</line>
+				<textField pattern="#,### đ">
+					<reportElement x="284" y="17" width="100" height="33" uuid="0a8a1b2c-3dce-4fa4-b637-d1f7cdacd78b"/>
+					<textElement>
+						<font size="20" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TONG_1}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="26" width="410" height="53" uuid="c3c21bbc-f0b3-482b-9385-67349b216148"/>
+				<textElement textAlignment="Center">
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[THỐNG KÊ DOANH THU]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="44" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="31" uuid="48d2dd56-c101-4264-9305-035f215b78b4"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MANV}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,### đ">
+				<reportElement x="284" y="0" width="100" height="31" uuid="d0b6f743-ac30-4339-adc9-0b1aa79fff52"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TONG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="163" y="0" width="100" height="31" uuid="76b7f8cb-c9b5-4089-9a09-f13d443259b2"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TO_CHAR(THOIGIAN,'DD/MM/YY')}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="24" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="111" splitType="Stretch">
+			<textField pattern="#,### đ">
+				<reportElement x="149" y="47" width="100" height="30" forecolor="#990000" uuid="5c948edb-b166-411e-8f02-1b52afe3f3c1"/>
+				<textElement textAlignment="Center">
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TONG_2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="0" width="360" height="33" forecolor="#990000" uuid="e1e6b18f-a609-45f2-99a4-365a3b553b4b"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TỔNG DOANH THU QUẦY VÉ THÁNG]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="370" y="0" width="100" height="33" forecolor="#990000" uuid="a1825b57-9774-4c57-a9a6-38284bf85422"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{THANG}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
